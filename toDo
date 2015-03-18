@@ -1,0 +1,6 @@
+- what are the largest and smallest possible heights for a binary tree with n nodes
+- depth first: visit a node's children before its siblings.
+- breadth first: vist a node's siblings before its children
+- Binary Search Tree: left children are smaller than their parents. right children are larger than their parents
+- BST Interface: insert, delete, contains, max, min
+- searching BST if x is less than the current element, go left. if it's more, go right.
