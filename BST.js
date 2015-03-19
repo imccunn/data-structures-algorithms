@@ -1,7 +1,9 @@
 'use strict';
 
 function BST() {
-	this.root = null;
+	this.data = null;
+	this.left = null;
+	this.right = null;
 }
 
 BST.prototype.each = function(func, node) {
@@ -25,8 +27,46 @@ BST.prototype.contains = function(value, node) {
 
 // write a function that takes a binary tree node. Return true if its corresponding
 // 	sub-tree is a BST. Otherwise, return false.
-BST.prototype.childIsBST = function(btn) {
+BST.prototype.isBST = function(root) {
+	if (root === null) return true;
 
+	if (isSubTreeLesser(root.left, root.data)
+		&& isSubTreeGreater(root.right, root.data)
+		&& isBST(root.left)
+		&& isBST(root.right)) {
+
+		return true;
+	} else {
+		return false;
+	}
+
+}; // **********  O(n^2) **********
+
+
+BST.prototype.isSubTreeLesser = function(root, val) {
+	if (root === null) return true;
+
+	if (root.data < val
+		&& this.isSubTreeLesser(root.left, val)
+		&& this.isSubTreeLesser(root.right, val)) {
+
+		return true;
+	} else {
+		return false;
+	}
+};
+
+BST.prototype.isSubTreeGreater = function(root, val) {
+	if (root === null) return true;
+
+	if (root.data > val
+		&& this.isSubTreeGreater(root.left, val)
+		&& this.isSubTreeGreater(root.right, val)) {
+
+		return true;
+	} else {
+		return false;
+	}
 };
 
 // Given a BST tree and a value x. Write a function closest(tree, x) that returns 
