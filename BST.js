@@ -6,6 +6,16 @@ function BST() {
 	this.right = null;
 }
 
+BST.prototype.insertNode = function(root, newNode) {
+	if (newNode.data < root.data) {
+		if (root.left === null) root.left = newNode;
+		else this.insertNode(root.left, newNode);
+	} else {
+		if (root.right === null) root.right = newNode;
+		else this.insertNode(root.right, newNode);
+	}
+};
+
 BST.prototype.each = function(func, node) {
 	node = (node === undefined) ? this.node : node;
 	if (!node) return;
@@ -69,9 +79,28 @@ BST.prototype.isSubTreeGreater = function(root, val) {
 	}
 };
 
-// Given a BST tree and a value x. Write a function closest(tree, x) that returns 
+BST.prototype.min = function(node) {
+	if (node) {
+		while (node && node.left !== null) {
+			node = node.left;
+		}
+		return node.data;
+	}
+	return null;
+};
+
+BST.prototype.max = function(node) {
+	if (node) {
+		while (node && node.right !== null) {
+			node = node.right;
+		}
+		return node.data;
+	}
+	return null;
+};
+
+// Given a BST tree and a value x. Write a function closest(tree, x) that returns
 // 		the value in the tree that's closest to the value x.
 BST.prototype.closest = function(tree, x) {
 
 };
-
