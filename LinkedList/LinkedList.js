@@ -53,10 +53,10 @@ LinkedList.prototype = {
       return false;
     }
   },
-  removeAt: function() {
+  removeAt: function(position) {
     // Check for out-of-bounds values
     if (position > -1 && position < this.length) {
-      var current = head,
+      var current = this.head,
           previous,
           index = 0;
 
@@ -78,11 +78,37 @@ LinkedList.prototype = {
       return null;
     }
   },
-  remove: function() {},
-  indexOf: function() {},
-  isEmpty: function() {},
-  size: function() {},
-  toString: function() {},
-  print: function() {}
+  remove: function(element) {
+    var index = this.indexOf(element);
+    return this.removeAt(index);
+  },
+  indexOf: function(element) {
+    var current = this.head,
+        index = 0;
+
+    while (current) {
+      if (element === current.element) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1;
+  },
+  isEmpty: function() {
+    return this.length === 0;
+  },
+  size: function() {
+    return this.length;
+  },
+  toString: function() {
+    var current = this.head,
+        string = '';
+    while (current) {
+      string = current.element + '->';
+      current = current.next;
+    }
+    return string;
+  }
 
 };
