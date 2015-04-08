@@ -31,3 +31,5 @@ Queue.prototype.size = function() {
 Queue.prototype.print = function() {
   return console.log(items.toString());
 };
+
+module.exports = Queue;
