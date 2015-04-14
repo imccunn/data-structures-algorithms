@@ -16,12 +16,12 @@ BST.prototype.insertNode = function(root, newNode) {
 	}
 };
 
-BST.prototype.each = function(func, node) {
+BST.prototype.each = function(callback, node) {
 	node = (node === undefined) ? this.node : node;
 	if (!node) return;
 
 	this.each(node.left);
-	func(node.value);
+	callback(node.value);
 	this.each(node.right);
 }
 
