@@ -1,19 +1,20 @@
 'use strict';
 
 var Queue = require('../Queue/Queue');
+var Dictionary = require('../Dictionary/Dictionary');
 
 function Graph() {
   var vertices = [];
-  var adjList = {};
+  var adjList = new Dictionary();
 
   this.addVertex = function(v) {
     vertices.push(v);
-    adjList[v] = [];
+    adjList.set(v, []);
   };
 
   this.addEdge = function(v, w) {
-    adjList[v].push(w);
-    adjList[w].push(v);
+    adjList.get(v).push(w);
+    adjList.get(w).push(v);
   };
 
   this.bfs = function(v, callback) {
