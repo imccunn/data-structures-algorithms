@@ -1,9 +1,6 @@
 'use strict';
 
-function Vertex() {
-  this.value;
-  this.neighbors;
-}
+var Vertex = require('./Vertex');
 
 function Graph() {
   this.vertices = [];
@@ -18,6 +15,17 @@ Graph.prototype.isAdjacent = function(v, inV) {
   var vertexStructure = this.vertices[inV];
   return vertexStructure && vertexStructure.neighbors &&
     (vertexStructure.neighbors.indexOf(v) > -1);
+};
+
+Graph.prototype.addVertex = function(value) {
+  var v = new Vertex(value);
+  this.vertices.push(v);
+};
+
+Graph.prototype.addEdge = function(vertexIndex, vertex2Index) {
+  if (!vertexIndex || !vertex2Index) return false;
+  this.vertices[vertexIndex].neighbors.push(vertex2Index);
+  this.vertices[vertex2Index].neighbors.push(vertexIndex);
 };
 
 Graph.prototype.getValue = function(vertexIndex) {
@@ -39,7 +47,7 @@ Graph.prototype.isPath = function(vertexIndex, vertex2Index) {
   while (next.length) {
     current = next.shift();
     if (current === vertex2Index) return true;
-    if (!seen[current]) next.concat(this.vertices[currnt].neighbors);
+    if (!seen[current]) next.concat(this.vertices[current].neighbors);
     seen[current] = true;        
   }
   return false;
