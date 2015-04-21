@@ -69,6 +69,20 @@ Graph.prototype.eachDepth = function(vertexIndex, vertex2Index, callback) {
   }
 };
 
+Graph.prototype.eachBreadth = function(vertexIndex, vertex2Index, callback) {
+  var next = [].concat(this.vertices[vertexIndex].neighbors);
+  var seen = {};
+  var current;
+
+  while (next.length) {
+    current = next.shift();
+    if(seen[current]) continue;
+    callback(this.getValue(current));
+    seen[current] = true;
+    next.concat(this.vertices[current].neighbors);
+  }
+};
+
 Graph.prototype.hasCycle = function(vertexIndex) {
   var next = [].concat(this.vertices[vertexIndex].neighbors);
   var seen = {};
