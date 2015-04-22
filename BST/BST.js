@@ -1,9 +1,9 @@
 'use strict';
 
+var Node = require('./Node');
+
 function BST() {
-	this.data = null;
-	this.left = null;
-	this.right = null;
+	this.root = new Node();
 }
 
 BST.prototype.insertNode = function(root, newNode) {
@@ -17,13 +17,13 @@ BST.prototype.insertNode = function(root, newNode) {
 };
 
 BST.prototype.each = function(callback, node) {
-	node = (node === undefined) ? this.node : node;
+	node = (node === undefined) ? this.root : node;
 	if (!node) return;
 
 	this.each(node.left);
 	callback(node.value);
 	this.each(node.right);
-}
+};
 
 BST.prototype.contains = function(value, node) {
 	node = (node === undefined) ? this.root : node;
@@ -104,3 +104,5 @@ BST.prototype.max = function(node) {
 BST.prototype.closest = function(tree, x) {
 
 };
+
+module.exports = BST;

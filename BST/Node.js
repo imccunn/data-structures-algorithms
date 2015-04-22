@@ -7,9 +7,9 @@
  * @param {Node} right Node or subtree.
  */
 function Node(data, left, right) {
-	this.data = data;
-	this.left = left;
-	this.right = right;
+	this.data = data || null;
+	this.left = left || null;
+	this.right = right || null;
 	this.show = function() {
 		return this.data;
 	}

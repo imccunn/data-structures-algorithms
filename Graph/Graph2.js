@@ -63,7 +63,7 @@ Graph.prototype.isPathAcyclic = function(vertexIndex, vertex2Index) {
   return false;
 };
 
-Graph.prototype.eachDepth = function(vertexIndex, vertex2Index, callback) {
+Graph.prototype.eachDepth = function(vertexIndex, callback) {
   var next = this.vertices[vertexIndex].neighbors;
   var seen = {};
   var current;
@@ -71,13 +71,13 @@ Graph.prototype.eachDepth = function(vertexIndex, vertex2Index, callback) {
   while (next.length) {
     current = next.pop();
     if (seen[current]) continue;
-    callback(this.getValue(current));
+    callback(this.vertices[current]);
     seen[current] = true;
     next.concat(this.vertices[current].neighbors);
   }
 };
 
-Graph.prototype.eachBreadth = function(vertexIndex, vertex2Index, callback) {
+Graph.prototype.eachBreadth = function(vertexIndex, callback) {
   var next = [].concat(this.vertices[vertexIndex].neighbors);
   var seen = {};
   var current;
@@ -85,7 +85,7 @@ Graph.prototype.eachBreadth = function(vertexIndex, vertex2Index, callback) {
   while (next.length) {
     current = next.shift();
     if(seen[current]) continue;
-    callback(this.getValue(current));
+    callback(this.vertices[current]);
     seen[current] = true;
     next.concat(this.vertices[current].neighbors);
   }
