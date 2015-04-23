@@ -53,6 +53,7 @@ Graph.prototype.isPath = function(vertexIndex, vertex2Index) {
   return false;
 };
 
+// ********** Assuming the graph is actually acyclic **********
 Graph.prototype.isPathAcyclic = function(vertexIndex, vertex2Index) {
   var current = this.vertices[vertexIndex];
   if (!current || !current.neighbors) return false;
