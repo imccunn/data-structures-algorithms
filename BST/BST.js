@@ -99,6 +99,41 @@ BST.prototype.max = function(node) {
   return null;
 };
 
+BST.prototype.removeNode = function(node, element) {
+  if (node === null) return null;
+
+  if (element < node.data) {
+    node.left = this.removeNode(node.left, element);
+    return node;
+  } else if (element > node.data) {
+    node.right = this.removeNode(node.right, element);
+    return node;
+  } else {
+    // handle 3 conditions
+    // 1 - a leaf node
+    // 2 - a node with only 1 child
+    // 3 - a node with 2 children 
+
+    if (node.left === null && node.right === null) {
+      node = null;
+      return node;
+    }
+
+    if (node.left === null) {
+      node = node.right;
+      return node;
+    } else if (node.right === null) {
+      node = node.left;
+      return node;
+    }
+
+    var aux = this.min(node.right);
+    node.data = aux;
+    node.right = this.removeNode(node.right, aux);
+    return node;
+  }
+};
+
 // Given a BST tree and a value x. Write a function closest(tree, x) that returns
 //    the value in the tree that's closest to the value x.
 
