@@ -101,8 +101,27 @@ BST.prototype.max = function(node) {
 
 // Given a BST tree and a value x. Write a function closest(tree, x) that returns
 //    the value in the tree that's closest to the value x.
-BST.prototype.closest = function(tree, x) {
 
+function diff(v1, v2) {
+  return Math.abs(v1 - v2);
+}
+
+BST.prototype.closest = function(node, x) {
+  
+  node = (node === undefined) ? this.root : node;
+  if (!node) return;
+  if (node.value === x) return node.value;
+  if (x < node.value) {
+    if (x > node.left.value) {
+      return ((diff(node.value, x) < diff(node.left.value, x)) ? node.value : node.left.value);
+    }
+    return this.closest(node.left, x);
+  } else if (x > node.value) {
+    if (x < node.right.value) {
+      return ((diff(node.value, x) < diff(node.right.value, x)) ? node.value : node.right.value);
+    }
+    return this.closest(node.right, x);
+  }
 };
 
 module.exports = BST;
