@@ -16,7 +16,7 @@ BST.prototype.insertNode = function(root, newNode) {
   }
 };
 
-BST.prototype.each = function(callback, node) {
+BST.prototype.each = function(node, callback) {
   node = (node === undefined) ? this.root : node;
   if (!node) return;
 
