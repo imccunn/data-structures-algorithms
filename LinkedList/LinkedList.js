@@ -17,7 +17,7 @@ LinkedList.prototype = {
     if (this.head === null) {
       this.head = node;
     } else {
-      current = head;
+      current = this.head;
 
       // Loop until last item is found
       while (current.next) {
@@ -30,15 +30,15 @@ LinkedList.prototype = {
 
   },
   insert: function(position, element) {
-    if (position >= && position <= this.length) {
+    if (position >= 0 && position <= this.length) {
       var node = new Node(element),
-          current = head,
+          current = this.head,
           previous,
           index = 0;
 
       if (position === 0) {
         node.next = current;
-        head = node;
+        this.head = node;
       } else {
         while (index++ < position) {
           previous = current;
