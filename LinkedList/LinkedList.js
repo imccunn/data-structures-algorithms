@@ -3,7 +3,7 @@
 var Node = require('./Node');
 
 function LinkedList() {
-  this.head = null;
+  this.head = null; 
   this.length = 0;
 }
 
@@ -105,7 +105,7 @@ LinkedList.prototype = {
     var current = this.head,
         string = '';
     while (current) {
-      string = current.element + '->';
+      string += current.element + ' -> ';
       current = current.next;
     }
     return string;
