@@ -159,4 +159,19 @@ BST.prototype.closest = function(node, x) {
   }
 };
 
+BST.prototype.depth = function(node) {
+  if (node) {
+    if (!node.left && !node.right) {
+      return 1;
+    } else {
+      var temp_depth = Math.max(this.depth(node.left), this.depth(node.right));
+      return temp_depth;
+    }
+
+  } else {
+    return 0;
+  }
+
+};
+
 module.exports = BST;
