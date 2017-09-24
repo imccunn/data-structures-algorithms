@@ -1,9 +1,8 @@
-'use strict';
 
-var Node = require('./Node');
+const Node = require('./Node');
 
 function LinkedList() {
-  this.head = null; 
+  this.head = null;
   this.length = 0;
 }
 
@@ -11,8 +10,8 @@ LinkedList.prototype = {
   constructor: LinkedList,
 
   append: function(element) {
-    var node = new Node(element),
-        current;
+    let node = new Node(element);
+    let current;
 
     if (this.head === null) {
       this.head = node;
@@ -31,10 +30,10 @@ LinkedList.prototype = {
   },
   insert: function(position, element) {
     if (position >= 0 && position <= this.length) {
-      var node = new Node(element),
-          current = this.head,
-          previous,
-          index = 0;
+      let node = new Node(element);
+      let current = this.head;
+      let previous;
+      let index = 0;
 
       if (position === 0) {
         node.next = current;
@@ -56,9 +55,9 @@ LinkedList.prototype = {
   removeAt: function(position) {
     // Check for out-of-bounds values
     if (position > -1 && position < this.length) {
-      var current = this.head,
-          previous,
-          index = 0;
+      let current = this.head,
+      let previous;
+      let index = 0;
 
       // Remove first item
       if (position == 0) {
@@ -78,13 +77,15 @@ LinkedList.prototype = {
       return null;
     }
   },
+
   remove: function(element) {
-    var index = this.indexOf(element);
+    let index = this.indexOf(element);
     return this.removeAt(index);
   },
+
   indexOf: function(element) {
-    var current = this.head,
-        index = 0;
+    let current = this.head;
+    let index = 0;
 
     while (current) {
       if (element === current.element) {
@@ -95,20 +96,22 @@ LinkedList.prototype = {
     }
     return -1;
   },
+
   isEmpty: function() {
     return this.length === 0;
   },
+
   size: function() {
     return this.length;
   },
+
   toString: function() {
-    var current = this.head,
-        string = '';
+    let current = this.head;
+    let string = '';
     while (current) {
       string += current.element + ' -> ';
       current = current.next;
     }
     return string;
   }
-
 };
